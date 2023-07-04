@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sliding Popup Message</title>
+  <style>
+    /* Style for the navbar */
+    .navbar {
+      background-color: #333;
+      padding: 10px;
+      color: #fff;
+    }
+
+    /* Style for the popup message */
+    .popup-message {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #f1f1f1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      color: #333;
+      display: none;
+      z-index: 9999;
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 600px) {
+      .popup-message {
+        top: 0;
+        left: 0;
+      }
+    }
+  </style>
+  <script>
+    // Function to display the popup message
+    function displayPopupMessage(message, duration) {
+      var navbarElement = document.querySelector(".navbar");
+      var popupElement = document.createElement("div");
+      popupElement.className = "popup-message";
+      popupElement.textContent = message;
+
+      document.body.appendChild(popupElement);
+
+      // Slide in the popup from the navbar's position
+      var navbarHeight = navbarElement.offsetHeight;
+      popupElement.style.top = navbarHeight + "px";
+      popupElement.style.display = "block";
+
+      setTimeout(function() {
+        popupElement.remove();
+      }, duration); // Remove the popup after the specified duration
+    }
+  </script>
+</head>
+<body>
+  <div class="navbar">
+    <!-- Your navbar content goes here -->
+  </div>
+
+  <!-- Your HTML content -->
+
+  <script>
+    // Call the displayPopupMessage() function to show the popup
+    window.addEventListener("DOMContentLoaded", function() {
+      var popupMessage = "This is a custom popup message!";
+      var popupDuration = 5000; // 5 seconds (in milliseconds)
+      displayPopupMessage(popupMessage, popupDuration);
+    });
+  </script>
+</body>
+</html>
